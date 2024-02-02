@@ -5,7 +5,7 @@ import axios from "axios";
 // 2. Create an express app and set the port number.
 const app = express();
 const port = 3000;
-const API_URL = "https://secrets-api.appbrewery.com/random";
+const jokeAPI_URL = "https://api.chucknorris.io/jokes/random";
 
 // 3. Use the public folder for static files.
 app.use(express.static("public"));
@@ -17,8 +17,8 @@ app.get("/", async (req, res) => {
     try {
       const result = await axios.get(API_URL);
       res.render("index.ejs", {
-        secret: result.data.secret,
-        user: result.data.username
+        joke: result.data.value,
+        pic: result.data.icon_url
     });
     } catch (error) {
       console.error("Failed to make request:", error.message);
